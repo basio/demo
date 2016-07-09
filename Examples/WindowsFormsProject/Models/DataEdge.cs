@@ -18,6 +18,8 @@ namespace WindowsFormsProject
 
     public class DataEdge : EdgeBase<DataVertex>
     {
+
+        string Type { get; set; }
         /// <summary>
         /// Default constructor. We need to set at least Source and Target properties of the edge.
         /// </summary>
@@ -47,5 +49,25 @@ namespace WindowsFormsProject
             return Text;
         }
         #endregion
+        DataEdge _original = null;
+        public DataEdge original
+        {
+            get
+            {
+                if (_original == null) return this;
+                return _original;
+            }
+        }
+        public DataEdge reverse()
+        {
+            DataEdge t = new DataEdge();
+            t.Target = this.Source;
+            t.Source = this.Target;
+            t.Text = this.Text;
+            t.Weight = this.Weight;
+            t._original = this;
+            return t;
+
+        }
     }
 }

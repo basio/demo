@@ -74,7 +74,7 @@ namespace WindowsFormsProject
             graph = new BidirectionalGraph<DataVertex, DataEdge>();
             dic = new Dictionary<string, DataVertex>();
             //Loop through tables
-            StreamWriter sw = new StreamWriter("c:\\data\\aa.txt");
+            //StreamWriter sw = new StreamWriter("c:\\data\\aa.txt");
             foreach (var table in tables)
             {
                 Table t = new Table(table.Table);
@@ -82,7 +82,7 @@ namespace WindowsFormsProject
                 graph.AddVertex(t);
                 dic.Add(t.Text, t);
 
-                sw.WriteLine(t.Text);
+              //  sw.WriteLine(t.Text);
 
                 foreach (var column in table.Columns)
                 {
@@ -94,7 +94,7 @@ namespace WindowsFormsProject
                     graph.AddEdge(e1);
                 }
             }
-            sw.Close();
+            //sw.Close();
         }
 
 

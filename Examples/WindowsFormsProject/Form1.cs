@@ -45,7 +45,7 @@ namespace WindowsFormsProject
             GraphExample example = LoadGraph();
             logic.Graph = example.getGraph();
             _gArea.process(example.dic);
-          //  logic.Graph = example.getGraph();
+          
             logic.DefaultLayoutAlgorithm = LayoutAlgorithmTypeEnum.LinLog;
             logic.DefaultLayoutAlgorithmParams = logic.AlgorithmFactory.CreateLayoutParameters(LayoutAlgorithmTypeEnum.LinLog);
             //((LinLogLayoutParameters)logic.DefaultLayoutAlgorithmParams). = 100;
