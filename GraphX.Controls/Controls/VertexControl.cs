@@ -260,6 +260,8 @@ namespace GraphX.Controls
         }
 
         #endregion
+
+
 #elif METRO
         #region Attached property tracer
         private static readonly DependencyProperty TestXProperty =

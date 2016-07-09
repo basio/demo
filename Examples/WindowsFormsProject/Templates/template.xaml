@@ -5,11 +5,11 @@
 
     <!-- VERTEX CONTROL -->
     <Style TargetType="{x:Type controls:VertexControl}">
-        <Setter Property="Background" Value="#FFE3E3E3"/>
+        <Setter Property="Background" Value="LightBlue"/>
         <Setter Property="BorderThickness" Value="5,3,5,3"/>
         <Setter Property="Padding" Value="10,5,10,5"/>
         <Setter Property="BorderBrush" Value="#FF393939"/>
-
+       
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type controls:VertexControl}">
@@ -40,6 +40,10 @@
                 <Setter Property="Background" Value="Gold"/>
                 <Setter Property="BorderThickness" Value="7"/>
             </Trigger>
+            <DataTrigger Binding="{Binding SomeConditionalProperty}"
+                             Value="True">
+                <Setter Property="Background" Value="Pink" />
+            </DataTrigger>
         </Style.Triggers>
     </Style>
 

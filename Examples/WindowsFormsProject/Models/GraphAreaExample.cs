@@ -5,7 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using GraphX.Controls;
 using GraphX.PCL.Common.Interfaces;
-using QuickGraph;
+using System.Drawing;
+using GraphX.Controls.Models;
+using System.Windows.Media;
 
 namespace WindowsFormsProject
 {
@@ -19,21 +21,23 @@ namespace WindowsFormsProject
     {
         public BidirectionalGraph<DataVertex, DataEdge> ProcessFilter(BidirectionalGraph<DataVertex, DataEdge> inputGraph)
         {
-                        return new BidirectionalGraph<DataVertex, DataEdge>();
+            return new BidirectionalGraph<DataVertex, DataEdge>();
         }
     }
     public class VertexFilter : IGraphFilter<DataVertex, DataEdge, BidirectionalGraph<DataVertex, DataEdge>>
     {
-      public  Dictionary<String, DataVertex> dic;
+        public Dictionary<String, DataVertex> dic;
         public String sourceVertex;
-        List<DataVertex> getTable(BidirectionalGraph<DataVertex, DataEdge> graph ,String name)
+        List<DataVertex> getTable(BidirectionalGraph<DataVertex, DataEdge> graph, String name)
         {
             DataVertex source = dic[name];
             if (source is Attribute)
             {
                 //need to get the table
-                foreach (var e in graph.OutEdges(source))  {
-                    if ((e.Weight == 1) && (e.Target is Table)) {
+                foreach (var e in graph.OutEdges(source))
+                {
+                    if ((e.Weight == 1) && (e.Target is Table))
+                    {
                         source = e.Target;
                         break;
                     }
@@ -49,7 +53,7 @@ namespace WindowsFormsProject
             }
             return vertex_list;
         }
-         
+
         public BidirectionalGraph<DataVertex, DataEdge> ProcessFilter(BidirectionalGraph<DataVertex, DataEdge> inputGraph)
         {
             BidirectionalGraph<DataVertex, DataEdge> filteredgraph = new BidirectionalGraph<DataVertex, DataEdge>();
@@ -57,18 +61,45 @@ namespace WindowsFormsProject
             HashSet<DataVertex> hs = new HashSet<DataVertex>(l);
             filteredgraph.AddVertexRange(l);
             //add edges
-            foreach(var e in inputGraph.Edges)
+            foreach (var e in inputGraph.Edges)
             {
                 if (hs.Contains(e.Source) && hs.Contains(e.Target))
                     filteredgraph.AddEdge(e);
             }
-            
+
             return filteredgraph;
         }
 
     }
+    public class CustomGraphControlFactory : GraphControlFactory
+    {
+        public CustomGraphControlFactory(GraphAreaBase graphArea) : base(graphArea)
+        {
+        }
 
-    public class GraphAreaExample : GraphArea<DataVertex, DataEdge, BidirectionalGraph<DataVertex, DataEdge>> {
+        int getVertexColor(object v)
+        {
+            if (v is Table)
+                return 1;
+            else return 0;
+        }
+        public override VertexControl CreateVertexControl(object vertexData)
+        {
+            var vertex_control= new VertexControl(vertexData) { RootArea = FactoryRootArea };
+            if (getVertexColor(vertexData) == 1)
+                vertex_control.Background = System.Windows.Media.Brushes.Gold;
+            else
+                vertex_control.Background = System.Windows.Media.Brushes.LightBlue;
+            return vertex_control;
+        }
+        
+    }
+    public class GraphAreaExample : GraphArea<DataVertex, DataEdge, BidirectionalGraph<DataVertex, DataEdge>>
+    {
+    public    GraphAreaExample()
+        {
+            ControlFactory=new  CustomGraphControlFactory(this);
+        }
         VertexFilter filter;
 
         public void process(Dictionary<string, DataVertex> dic)
@@ -79,7 +110,8 @@ namespace WindowsFormsProject
             LogicCore.Filters.Enqueue(filter);
             RelayoutGraph();
         }
-
-        }
     
+
+    }
+
 }
