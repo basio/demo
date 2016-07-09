@@ -6,6 +6,6 @@
         GenerateGraph,
         GenerateGraphWithEdges,
         RelayoutGraph,
-        RelayoutGraphWithEdges
+        RelayoutGraphWithEdges        
     }
 }

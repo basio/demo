@@ -237,7 +237,7 @@ namespace GraphX.PCL.Logic.Models
         /// <summary>
         /// Gets unmodified graph before any filters has been applied
         /// </summary>
-        public TGraph OriginalGraph { get; protected set; }
+        public TGraph OriginalGraph { get;  set; }
 
         /// <summary>
         /// Gets or sets if parallel edges are enabled. All edges between the same nodes will be separated by ParallelEdgeDistance value.

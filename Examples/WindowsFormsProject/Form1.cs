@@ -41,7 +41,11 @@ namespace WindowsFormsProject
                 EdgeLabelFactory = new DefaultEdgelabelFactory()
             };
             _gArea.ShowAllEdgesLabels(true);
-            logic.Graph = GenerateGraph().getGraph();
+
+            GraphExample example = LoadGraph();
+            logic.Graph = example.getGraph();
+            _gArea.process(example.dic);
+          //  logic.Graph = example.getGraph();
             logic.DefaultLayoutAlgorithm = LayoutAlgorithmTypeEnum.LinLog;
             logic.DefaultLayoutAlgorithmParams = logic.AlgorithmFactory.CreateLayoutParameters(LayoutAlgorithmTypeEnum.LinLog);
             //((LinLogLayoutParameters)logic.DefaultLayoutAlgorithmParams). = 100;
@@ -65,13 +69,12 @@ namespace WindowsFormsProject
         {
             _zoomctrl.ZoomToFill();
         }
-
-        private GraphExample GenerateGraph()
+        private GraphExample original_graph;
+        private GraphExample LoadGraph()
         {
-            //FOR DETAILED EXPLANATION please see SimpleGraph example project
-            GraphExample e = new GraphExample();
-            e.LoadGraph("c:\\data\\sample.sql.xml");
-            return e;
+            original_graph = new GraphExample();
+            original_graph.LoadGraph("c:\\data\\d.xml");
+            return original_graph;
         }
 
         private void but_generate_Click(object sender, EventArgs e)

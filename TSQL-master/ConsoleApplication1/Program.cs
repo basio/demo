@@ -527,7 +527,7 @@ namespace SqlParserSample
             StreamReader sr = new StreamReader(filename);
 
             string parseSourceCode = sr.ReadToEnd();
-            String[] queries = parseSourceCode.Split(new string[] { "GO" }, StringSplitOptions.RemoveEmptyEntries);
+            String[] queries = parseSourceCode.Split(new string[] { "GO\n\r" }, StringSplitOptions.RemoveEmptyEntries);
             StreamWriter sw = new StreamWriter(filenameoutput);
             foreach (String q in queries)
             {
@@ -549,7 +549,7 @@ namespace SqlParserSample
             StreamReader sr = new StreamReader(filename);
 
             string parseSourceCode = sr.ReadToEnd();
-            String[] queries = parseSourceCode.Split(new string[] { "GO" }, StringSplitOptions.RemoveEmptyEntries);
+            String[] queries = parseSourceCode.Split(new string[] { "GO\r\n" }, StringSplitOptions.RemoveEmptyEntries);
 
             StreamWriter sw = new StreamWriter(filenameoutput);
             sw.WriteLine("<Schema>");
