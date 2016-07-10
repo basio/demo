@@ -125,17 +125,49 @@ namespace Schema
             list.Add(source);
             return list;
         }
-        public List<DataVertex> getFuzzyMatch(string name)
+        public List<DataVertex> getTableFuzzyMatch(string name)
+        {
+            return getTableFuzzyMatch(new string[] { name });
+        }
+        public List<DataVertex> getAllFuzzyMatch(string name)
+        {
+            return getAllFuzzyMatch(new string[] { name });
+        }
+        public List<DataVertex> getTableFuzzyMatch(string[] name)
         {
             List<DataVertex> list = new List<DataVertex>();
             foreach (string k in dic.Keys)
             {
-                if (k.Contains(name))
+                bool match = true;
+                string kk = k.ToLower();
+                for (int i = 0; i < name.Length; i++)
                 {
+                    if (!kk.Contains(name[i].ToLower()))
+                    { match = false; break; }
+                }
+                if (match)
                     if (dic[k] is Table)
                         list.Add(dic[k]);
 
+            }
+            return list;
+        }
+
+        public List<DataVertex> getAllFuzzyMatch(string[] name)
+        {
+            List<DataVertex> list = new List<DataVertex>();
+            foreach (string k in dic.Keys)
+            {
+                bool match = true;
+                string kk = k.ToLower();
+                for(int i = 0; i < name.Length; i++)
+                {
+                    if (!kk.Contains(name[i].ToLower()))
+                    { match = false; break; }                    
                 }
+                if (match)
+                    list.Add(dic[k]);
+               
             }
             return list;
         }
@@ -155,7 +187,7 @@ namespace Schema
             if (exact)
                 return getMatching(getExactMatch(name));
             else
-                return getMatching(getFuzzyMatch(name));
+                return getMatching(getTableFuzzyMatch(name));
         }
     }
     #endregion

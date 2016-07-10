@@ -131,6 +131,7 @@ public class DataEdge : EdgeBase<DataVertex>
             t.Text = this.Text;
             t.Weight = this.Weight;
             t._original = this;
+            t.Type = DataEdge.EdgeType.Reduandant;
             return t;
 
         }

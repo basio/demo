@@ -33,7 +33,7 @@ using ParserRuleContext = Antlr4.Runtime.ParserRuleContext;
 [System.CLSCompliant(false)]
 public partial class kqlBaseVisitor<Result> : AbstractParseTreeVisitor<Result>, IkqlVisitor<Result> {
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="kqlParser.eval"/>.
+	/// Visit a parse tree produced by <see cref="kqlParser.Multiplication"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -41,10 +41,10 @@ public partial class kqlBaseVisitor<Result> : AbstractParseTreeVisitor<Result>, 
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitEval([NotNull] kqlParser.EvalContext context) { return VisitChildren(context); }
+	public virtual Result VisitMultiplication([NotNull] kqlParser.MultiplicationContext context) { return VisitChildren(context); }
 
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="kqlParser.additionExp"/>.
+	/// Visit a parse tree produced by <see cref="kqlParser.Addition"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -52,10 +52,10 @@ public partial class kqlBaseVisitor<Result> : AbstractParseTreeVisitor<Result>, 
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitAdditionExp([NotNull] kqlParser.AdditionExpContext context) { return VisitChildren(context); }
+	public virtual Result VisitAddition([NotNull] kqlParser.AdditionContext context) { return VisitChildren(context); }
 
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="kqlParser.multiplyExp"/>.
+	/// Visit a parse tree produced by <see cref="kqlParser.Subtraction"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -63,10 +63,10 @@ public partial class kqlBaseVisitor<Result> : AbstractParseTreeVisitor<Result>, 
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitMultiplyExp([NotNull] kqlParser.MultiplyExpContext context) { return VisitChildren(context); }
+	public virtual Result VisitSubtraction([NotNull] kqlParser.SubtractionContext context) { return VisitChildren(context); }
 
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="kqlParser.atomExp"/>.
+	/// Visit a parse tree produced by <see cref="kqlParser.Number"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -74,6 +74,39 @@ public partial class kqlBaseVisitor<Result> : AbstractParseTreeVisitor<Result>, 
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitAtomExp([NotNull] kqlParser.AtomExpContext context) { return VisitChildren(context); }
+	public virtual Result VisitNumber([NotNull] kqlParser.NumberContext context) { return VisitChildren(context); }
+
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="kqlParser.Division"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitDivision([NotNull] kqlParser.DivisionContext context) { return VisitChildren(context); }
+
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="kqlParser.compileUnit"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitCompileUnit([NotNull] kqlParser.CompileUnitContext context) { return VisitChildren(context); }
+
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="kqlParser.expression"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitExpression([NotNull] kqlParser.ExpressionContext context) { return VisitChildren(context); }
 }
 } // namespace Load

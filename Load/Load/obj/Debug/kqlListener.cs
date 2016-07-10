@@ -30,47 +30,90 @@ using IToken = Antlr4.Runtime.IToken;
 [System.CLSCompliant(false)]
 public interface IkqlListener : IParseTreeListener {
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="kqlParser.eval"/>.
+	/// Enter a parse tree produced by the <c>Multiplication</c>
+	/// labeled alternative in <see cref="kqlParser.expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterEval([NotNull] kqlParser.EvalContext context);
+	void EnterMultiplication([NotNull] kqlParser.MultiplicationContext context);
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="kqlParser.eval"/>.
+	/// Exit a parse tree produced by the <c>Multiplication</c>
+	/// labeled alternative in <see cref="kqlParser.expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitEval([NotNull] kqlParser.EvalContext context);
+	void ExitMultiplication([NotNull] kqlParser.MultiplicationContext context);
 
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="kqlParser.additionExp"/>.
+	/// Enter a parse tree produced by the <c>Addition</c>
+	/// labeled alternative in <see cref="kqlParser.expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterAdditionExp([NotNull] kqlParser.AdditionExpContext context);
+	void EnterAddition([NotNull] kqlParser.AdditionContext context);
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="kqlParser.additionExp"/>.
+	/// Exit a parse tree produced by the <c>Addition</c>
+	/// labeled alternative in <see cref="kqlParser.expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitAdditionExp([NotNull] kqlParser.AdditionExpContext context);
+	void ExitAddition([NotNull] kqlParser.AdditionContext context);
 
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="kqlParser.multiplyExp"/>.
+	/// Enter a parse tree produced by the <c>Subtraction</c>
+	/// labeled alternative in <see cref="kqlParser.expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterMultiplyExp([NotNull] kqlParser.MultiplyExpContext context);
+	void EnterSubtraction([NotNull] kqlParser.SubtractionContext context);
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="kqlParser.multiplyExp"/>.
+	/// Exit a parse tree produced by the <c>Subtraction</c>
+	/// labeled alternative in <see cref="kqlParser.expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitMultiplyExp([NotNull] kqlParser.MultiplyExpContext context);
+	void ExitSubtraction([NotNull] kqlParser.SubtractionContext context);
 
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="kqlParser.atomExp"/>.
+	/// Enter a parse tree produced by the <c>Number</c>
+	/// labeled alternative in <see cref="kqlParser.expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterAtomExp([NotNull] kqlParser.AtomExpContext context);
+	void EnterNumber([NotNull] kqlParser.NumberContext context);
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="kqlParser.atomExp"/>.
+	/// Exit a parse tree produced by the <c>Number</c>
+	/// labeled alternative in <see cref="kqlParser.expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitAtomExp([NotNull] kqlParser.AtomExpContext context);
+	void ExitNumber([NotNull] kqlParser.NumberContext context);
+
+	/// <summary>
+	/// Enter a parse tree produced by the <c>Division</c>
+	/// labeled alternative in <see cref="kqlParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterDivision([NotNull] kqlParser.DivisionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>Division</c>
+	/// labeled alternative in <see cref="kqlParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitDivision([NotNull] kqlParser.DivisionContext context);
+
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="kqlParser.compileUnit"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterCompileUnit([NotNull] kqlParser.CompileUnitContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="kqlParser.compileUnit"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitCompileUnit([NotNull] kqlParser.CompileUnitContext context);
+
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="kqlParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterExpression([NotNull] kqlParser.ExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="kqlParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitExpression([NotNull] kqlParser.ExpressionContext context);
 }
 } // namespace Load

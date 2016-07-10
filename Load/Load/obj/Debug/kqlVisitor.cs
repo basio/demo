@@ -31,31 +31,57 @@ using IToken = Antlr4.Runtime.IToken;
 [System.CLSCompliant(false)]
 public interface IkqlVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="kqlParser.eval"/>.
+	/// Visit a parse tree produced by the <c>Multiplication</c>
+	/// labeled alternative in <see cref="kqlParser.expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitEval([NotNull] kqlParser.EvalContext context);
+	Result VisitMultiplication([NotNull] kqlParser.MultiplicationContext context);
 
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="kqlParser.additionExp"/>.
+	/// Visit a parse tree produced by the <c>Addition</c>
+	/// labeled alternative in <see cref="kqlParser.expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitAdditionExp([NotNull] kqlParser.AdditionExpContext context);
+	Result VisitAddition([NotNull] kqlParser.AdditionContext context);
 
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="kqlParser.multiplyExp"/>.
+	/// Visit a parse tree produced by the <c>Subtraction</c>
+	/// labeled alternative in <see cref="kqlParser.expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitMultiplyExp([NotNull] kqlParser.MultiplyExpContext context);
+	Result VisitSubtraction([NotNull] kqlParser.SubtractionContext context);
 
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="kqlParser.atomExp"/>.
+	/// Visit a parse tree produced by the <c>Number</c>
+	/// labeled alternative in <see cref="kqlParser.expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitAtomExp([NotNull] kqlParser.AtomExpContext context);
+	Result VisitNumber([NotNull] kqlParser.NumberContext context);
+
+	/// <summary>
+	/// Visit a parse tree produced by the <c>Division</c>
+	/// labeled alternative in <see cref="kqlParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitDivision([NotNull] kqlParser.DivisionContext context);
+
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="kqlParser.compileUnit"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitCompileUnit([NotNull] kqlParser.CompileUnitContext context);
+
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="kqlParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitExpression([NotNull] kqlParser.ExpressionContext context);
 }
 } // namespace Load

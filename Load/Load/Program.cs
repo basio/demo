@@ -6,37 +6,49 @@ using System.Threading.Tasks;
 using Schema;
 
 using Antlr4.Runtime;
+using Antlr4.Runtime.Tree;
 
 namespace Load
 {
     class Program
     {
-        static void Main(string[] args)
+
+        static void o()
         {
-
-            SchemaGraph s = new SchemaGraph();
-            s.LoadGraph("c:\\data\\d.xml");           
-
-
-            Console.WriteLine( s.getGraph().VertexCount);
-            Console.WriteLine(s.getGraph().EdgeCount);
-            Filter f=Filter.createPathFilter(s.dic,"ED_STUD", "ED_STUD_SCHOLASTIC");
-            
-            SchemaGraph g = f.ProcessFilter(s);
-            Console.WriteLine(g.getGraph().VertexCount);
-            Console.WriteLine(g.getGraph().EdgeCount);
-       
-           
-
-            AntlrInputStream inputStream = new AntlrInputStream("12*(5-6)");
+            AntlrInputStream inputStream = new AntlrInputStream("12");
 
             kqlLexer lexer = new kqlLexer(inputStream);
             CommonTokenStream commonTokenStream = new CommonTokenStream(lexer);
             kqlParser parser = new kqlParser(commonTokenStream);
 
+            IParseTree tree = parser.compileUnit();
+            var visitor = new IntegerMathVisitor();
 
+            Console.WriteLine(visitor.Visit(tree));
 
-            Console.WriteLine(parser.eval().ToString());
+        }
+        static void Main(string[] args)
+        {
+
+            SchemaGraph s = new SchemaGraph();
+            s.LoadGraph("c:\\data\\b.xml");
+
+            if ("abc".Contains("abc"))
+                Console.WriteLine("ok");
+
+            Console.WriteLine(s.getGraph().VertexCount);
+            Console.WriteLine(s.getGraph().EdgeCount);
+            Filter f = Filter.createPathFilter(s.dic, "ED_STUD", "AS_NODE");
+
+            SchemaGraph g = f.ProcessFilter(s);
+            Console.WriteLine(g.getGraph().VertexCount);
+            Console.WriteLine(g.getGraph().EdgeCount);
+            var l = s.getAllFuzzyMatch(new string[] { "AS_NODE" });
+            foreach(DataVertex v in l)
+            {
+                Console.WriteLine(v);
+            }
+
         }
     }
 }

@@ -66,8 +66,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class1.cs" />
     <Compile Include="DataEdge.cs" />
     <Compile Include="DataVertex.cs" />
+    <Compile Include="Demo.cs" />
     <Compile Include="Filter.cs" />
     <Compile Include="kql.g4.lexer.cs">
       <DependentUpon>kql.g4</DependentUpon>
