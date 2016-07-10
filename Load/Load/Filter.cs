@@ -113,5 +113,14 @@ namespace Schema
         }
 
     }
+
+    public class QueryFilter : Filter
+    {
+        public string query;
+        public override SchemaGraph ProcessFilter(SchemaGraph inputGraph)
+        {
+            return null;
+        }
+    }
 }
 

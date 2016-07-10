@@ -44,9 +44,11 @@ namespace Schema
                         DataVertex curr = dic[table_col];
                         string ref_table_col = fk.RefTable + "." + refcols[i];
                         DataVertex reff = dic[ref_table_col];
-                        AddEdge(new DataEdge(curr, reff, 10));
+                        DataEdge edge = new DataEdge(curr, reff, 10);
+                        edge.Type = DataEdge.EdgeType.DB_fk;
+                        AddEdge(edge);
                     }
-                    catch (Exception e) { }
+                    catch (Exception ex) { }
                 }
 
             }
@@ -64,17 +66,13 @@ namespace Schema
                          };
 
             dic = new Dictionary<string, DataVertex>();
-            //Loop through tables
-            //StreamWriter sw = new StreamWriter("c:\\data\\aa.txt");
+     
             foreach (var table in tables)
             {
                 Table t = new Table(table.Table);
 
                 AddVertex(t);
                 dic.Add(t.Text, t);
-
-                //  sw.WriteLine(t.Text);
-
                 foreach (var column in table.Columns)
                 {
                     string colname = column.Attribute("id").Value;
@@ -82,15 +80,18 @@ namespace Schema
                     AddVertex(col);
                     dic.Add(col.Text, col);
                     var e1 = new DataEdge(t, col, 1);
+                    e1.Type = DataEdge.EdgeType.DB_attr;
                     AddEdge(e1);
                 }
             }
-            //sw.Close();
+     
         }
+
         public void LoadGraph(String name)
         {
             LoadXml(name);
             AddForeignKey(name);
+
         }
         public SchemaGraph getGraph()
         {

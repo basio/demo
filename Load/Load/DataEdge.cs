@@ -81,9 +81,9 @@ namespace Schema
 public class DataEdge : EdgeBase<DataVertex>
     {
 
-        enum EdgeType { DB, Ontology, Inverted, Reduandant };
+        public enum EdgeType {  DB_attr, DB_fk, Ontology, Inverted, Reduandant };
 
-        EdgeType Type { get; set; }
+        public EdgeType Type { get; set; }
         /// <summary>
         /// Default constructor. We need to set at least Source and Target properties of the edge.
         /// </summary>
@@ -122,9 +122,7 @@ public class DataEdge : EdgeBase<DataVertex>
                 return _original;
             }
         }
-
         
-
         public DataEdge reverse()
         {
             DataEdge t = new DataEdge();

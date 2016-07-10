@@ -18,8 +18,8 @@ namespace Load
 
             Console.WriteLine( s.getGraph().VertexCount);
             Console.WriteLine(s.getGraph().EdgeCount);
-            Filter f=Filter.createPathFilter("ED_STUD", "ED_STUD_SCHOLASTIC");
-            f.dic = s.dic;
+            Filter f=Filter.createPathFilter(s.dic,"ED_STUD", "ED_STUD_SCHOLASTIC");
+            
             SchemaGraph g = f.ProcessFilter(s);
             Console.WriteLine(g.getGraph().VertexCount);
             Console.WriteLine(g.getGraph().EdgeCount);
