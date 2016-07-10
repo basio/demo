@@ -30,14 +30,47 @@ using IToken = Antlr4.Runtime.IToken;
 [System.CLSCompliant(false)]
 public interface IkqlListener : IParseTreeListener {
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="kqlParser.compileUnit"/>.
+	/// Enter a parse tree produced by <see cref="kqlParser.eval"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterCompileUnit([NotNull] kqlParser.CompileUnitContext context);
+	void EnterEval([NotNull] kqlParser.EvalContext context);
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="kqlParser.compileUnit"/>.
+	/// Exit a parse tree produced by <see cref="kqlParser.eval"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitCompileUnit([NotNull] kqlParser.CompileUnitContext context);
+	void ExitEval([NotNull] kqlParser.EvalContext context);
+
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="kqlParser.additionExp"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterAdditionExp([NotNull] kqlParser.AdditionExpContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="kqlParser.additionExp"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitAdditionExp([NotNull] kqlParser.AdditionExpContext context);
+
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="kqlParser.multiplyExp"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterMultiplyExp([NotNull] kqlParser.MultiplyExpContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="kqlParser.multiplyExp"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitMultiplyExp([NotNull] kqlParser.MultiplyExpContext context);
+
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="kqlParser.atomExp"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterAtomExp([NotNull] kqlParser.AtomExpContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="kqlParser.atomExp"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitAtomExp([NotNull] kqlParser.AtomExpContext context);
 }
 } // namespace Load

@@ -34,17 +34,56 @@ using ParserRuleContext = Antlr4.Runtime.ParserRuleContext;
 [System.CLSCompliant(false)]
 public partial class kqlBaseListener : IkqlListener {
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="kqlParser.compileUnit"/>.
+	/// Enter a parse tree produced by <see cref="kqlParser.eval"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterCompileUnit([NotNull] kqlParser.CompileUnitContext context) { }
+	public virtual void EnterEval([NotNull] kqlParser.EvalContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="kqlParser.compileUnit"/>.
+	/// Exit a parse tree produced by <see cref="kqlParser.eval"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitCompileUnit([NotNull] kqlParser.CompileUnitContext context) { }
+	public virtual void ExitEval([NotNull] kqlParser.EvalContext context) { }
+
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="kqlParser.additionExp"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterAdditionExp([NotNull] kqlParser.AdditionExpContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="kqlParser.additionExp"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitAdditionExp([NotNull] kqlParser.AdditionExpContext context) { }
+
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="kqlParser.multiplyExp"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterMultiplyExp([NotNull] kqlParser.MultiplyExpContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="kqlParser.multiplyExp"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitMultiplyExp([NotNull] kqlParser.MultiplyExpContext context) { }
+
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="kqlParser.atomExp"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterAtomExp([NotNull] kqlParser.AtomExpContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="kqlParser.atomExp"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitAtomExp([NotNull] kqlParser.AtomExpContext context) { }
 
 	/// <inheritdoc/>
 	/// <remarks>The default implementation does nothing.</remarks>

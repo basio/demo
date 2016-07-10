@@ -31,10 +31,31 @@ using IToken = Antlr4.Runtime.IToken;
 [System.CLSCompliant(false)]
 public interface IkqlVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="kqlParser.compileUnit"/>.
+	/// Visit a parse tree produced by <see cref="kqlParser.eval"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitCompileUnit([NotNull] kqlParser.CompileUnitContext context);
+	Result VisitEval([NotNull] kqlParser.EvalContext context);
+
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="kqlParser.additionExp"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitAdditionExp([NotNull] kqlParser.AdditionExpContext context);
+
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="kqlParser.multiplyExp"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitMultiplyExp([NotNull] kqlParser.MultiplyExpContext context);
+
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="kqlParser.atomExp"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitAtomExp([NotNull] kqlParser.AtomExpContext context);
 }
 } // namespace Load

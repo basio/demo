@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Schema;
 
+using Antlr4.Runtime;
+
 namespace Load
 {
     class Program
@@ -23,6 +25,18 @@ namespace Load
             SchemaGraph g = f.ProcessFilter(s);
             Console.WriteLine(g.getGraph().VertexCount);
             Console.WriteLine(g.getGraph().EdgeCount);
+       
+           
+
+            AntlrInputStream inputStream = new AntlrInputStream("12*(5-6)");
+
+            kqlLexer lexer = new kqlLexer(inputStream);
+            CommonTokenStream commonTokenStream = new CommonTokenStream(lexer);
+            kqlParser parser = new kqlParser(commonTokenStream);
+
+
+
+            Console.WriteLine(parser.eval().ToString());
         }
     }
 }
