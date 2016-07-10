@@ -1,7 +1,7 @@
 ﻿using GraphX;
 using GraphX.PCL.Common.Models;
 
-namespace WindowsFormsProject
+namespace Schema
 {
     /* DataEdge is the data class for the edges. It contains all custom edge data specified by the user.
      * This class also must be derived from EdgeBase class that provides properties and methods mandatory for
@@ -19,7 +19,9 @@ namespace WindowsFormsProject
     public class DataEdge : EdgeBase<DataVertex>
     {
 
-        string Type { get; set; }
+        enum EdgeType { DB, Ontology, Inverted, Reduandant};
+
+        EdgeType Type { get; set; }
         /// <summary>
         /// Default constructor. We need to set at least Source and Target properties of the edge.
         /// </summary>

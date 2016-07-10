@@ -2,7 +2,7 @@
 using GraphX.PCL.Common.Models;
 using System;
 
-namespace WindowsFormsProject
+namespace Schema
 {
     /* DataVertex is the data class for the vertices. It contains all custom vertex data specified by the user.
      * This class also must be derived from VertexBase that provides properties and methods mandatory for

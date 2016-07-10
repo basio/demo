@@ -336,6 +336,7 @@ where TEdge : IEdge<TVertex>
                 newGraph.AddEdgeRange(graph.Edges);
             }
 
+          
             return newGraph;
         }
     }

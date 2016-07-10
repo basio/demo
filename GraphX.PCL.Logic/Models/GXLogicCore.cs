@@ -9,6 +9,7 @@ using GraphX.PCL.Logic.Algorithms;
 using QuickGraph;
 using QuickGraph.Algorithms;
 
+
 namespace GraphX.PCL.Logic.Models
 {
     public partial class GXLogicCore<TVertex, TEdge, TGraph>: IGXLogicCore<TVertex, TEdge, TGraph>
@@ -143,14 +144,18 @@ namespace GraphX.PCL.Logic.Models
             IsFilterRemoved = false;
             //remember original graph if we're about to start filtering
             if (Filters.Count > 0 && !IsFiltered)
+            {
                 OriginalGraph = Graph.CopyToGraph<TGraph, TVertex, TEdge>();
+               
+            }
             //reset graph if we remove filtering
-            else if(Filters.Count == 0 && IsFiltered)
+            else if (Filters.Count == 0 && IsFiltered)
                 PopFilters();
             while (Filters.Count > 0)
             {
                 //start applying filter on original graph copy on the 1st pass and then on Graph property each other pass
                 Graph = Filters.Dequeue().ProcessFilter( i==0 ? OriginalGraph.CopyToGraph<TGraph, TVertex, TEdge>() : Graph);
+                
                 i++;
                 IsFiltered = true;
             }

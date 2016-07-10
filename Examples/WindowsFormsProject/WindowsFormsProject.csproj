@@ -98,8 +98,9 @@
     </Compile>
     <Compile Include="Models\DataEdge.cs" />
     <Compile Include="Models\DataVertex.cs" />
+    <Compile Include="Models\Filter.cs" />
     <Compile Include="Models\GraphAreaExample.cs" />
-    <Compile Include="Models\GraphExample.cs" />
+    <Compile Include="Models\SchemaGraph.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">

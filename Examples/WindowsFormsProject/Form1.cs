@@ -8,6 +8,7 @@ using GraphX.PCL.Logic.Models;
 using GraphX.Controls;
 using GraphX.Controls.Models;
 using QuickGraph;
+using Schema;
 
 namespace WindowsFormsProject
 {
@@ -33,7 +34,7 @@ namespace WindowsFormsProject
             _zoomctrl = new ZoomControl();
             ZoomControl.SetViewFinderVisibility(_zoomctrl, Visibility.Visible);
             /* ENABLES WINFORMS HOSTING MODE --- >*/
-            var logic = new GXLogicCore<DataVertex, DataEdge, BidirectionalGraph<DataVertex, DataEdge>>();
+            var logic = new GXLogicCore<DataVertex, DataEdge, SchemaGraph>();
             _gArea = new GraphAreaExample
             {
                 EnableWinFormsHostingMode = true,
@@ -42,9 +43,9 @@ namespace WindowsFormsProject
             };
             _gArea.ShowAllEdgesLabels(true);
 
-            GraphExample example = LoadGraph();
+            SchemaGraph example = LoadGraph();
             logic.Graph = example.getGraph();
-            _gArea.process(example.dic);
+            _gArea.process();
           
             logic.DefaultLayoutAlgorithm = LayoutAlgorithmTypeEnum.LinLog;
             logic.DefaultLayoutAlgorithmParams = logic.AlgorithmFactory.CreateLayoutParameters(LayoutAlgorithmTypeEnum.LinLog);
@@ -69,10 +70,10 @@ namespace WindowsFormsProject
         {
             _zoomctrl.ZoomToFill();
         }
-        private GraphExample original_graph;
-        private GraphExample LoadGraph()
+        private SchemaGraph original_graph;
+        private SchemaGraph LoadGraph()
         {
-            original_graph = new GraphExample();
+            original_graph = new SchemaGraph();
             original_graph.LoadGraph("c:\\data\\d.xml");
             return original_graph;
         }
