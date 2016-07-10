@@ -1,0 +1,7 @@
+C:\Users\khalefa\Google Drive\KDBMS code\TSQL-master\ConsoleApplication1\bin\Release\ConsoleApplication1.exe.config
+C:\Users\khalefa\Google Drive\KDBMS code\TSQL-master\ConsoleApplication1\bin\Release\ConsoleApplication1.exe
+C:\Users\khalefa\Google Drive\KDBMS code\TSQL-master\ConsoleApplication1\bin\Release\ConsoleApplication1.pdb
+C:\Users\khalefa\Google Drive\KDBMS code\TSQL-master\ConsoleApplication1\bin\Release\Microsoft.SqlServer.Management.SqlParser.dll
+C:\Users\khalefa\Google Drive\KDBMS code\TSQL-master\ConsoleApplication1\bin\Release\Microsoft.SqlServer.TransactSql.ScriptDom.dll
+C:\Users\khalefa\Google Drive\KDBMS code\TSQL-master\ConsoleApplication1\obj\Release\ConsoleApplication1.exe
+C:\Users\khalefa\Google Drive\KDBMS code\TSQL-master\ConsoleApplication1\obj\Release\ConsoleApplication1.pdb

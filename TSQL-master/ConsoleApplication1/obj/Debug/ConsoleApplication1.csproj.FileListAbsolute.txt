@@ -1,0 +1,28 @@
+c:\users\khalefa\documents\visual studio 2013\Projects\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+C:\Users\khalefa\documents\visual studio 2013\Projects\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+C:\Users\khalefa\documents\visual studio 2013\Projects\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+C:\Users\khalefa\documents\visual studio 2013\Projects\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.csprojResolveAssemblyReference.cache
+C:\Users\khalefa\documents\visual studio 2013\Projects\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+C:\Users\khalefa\documents\visual studio 2013\Projects\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
+C:\Users\khalefa\Documents\Visual Studio 2013\Projects\TSQL\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+C:\Users\khalefa\Documents\Visual Studio 2013\Projects\TSQL\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+C:\Users\khalefa\Documents\Visual Studio 2013\Projects\TSQL\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
+C:\Users\khalefa\Documents\Visual Studio 2013\Projects\TSQL\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+C:\Users\khalefa\Documents\Visual Studio 2013\Projects\TSQL\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+C:\Users\khalefa\Documents\Visual Studio 2013\Projects\TSQL\ConsoleApplication1\obj\Debug\ConsoleApplication1.csprojResolveAssemblyReference.cache
+C:\Users\khalefa\Google Drive\KDBMS code\TSQL-master\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+C:\Users\khalefa\Google Drive\KDBMS code\TSQL-master\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+C:\Users\khalefa\Google Drive\KDBMS code\TSQL-master\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+C:\Users\khalefa\Google Drive\KDBMS code\TSQL-master\ConsoleApplication1\bin\Debug\Microsoft.SqlServer.Management.SqlParser.dll
+C:\Users\khalefa\Google Drive\KDBMS code\TSQL-master\ConsoleApplication1\bin\Debug\Microsoft.SqlServer.TransactSql.ScriptDom.dll
+C:\Users\khalefa\Google Drive\KDBMS code\TSQL-master\ConsoleApplication1\obj\Debug\ConsoleApplication1.csprojResolveAssemblyReference.cache
+C:\Users\khalefa\Google Drive\KDBMS code\TSQL-master\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+C:\Users\khalefa\Google Drive\KDBMS code\TSQL-master\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
+C:\Users\khalefa\Downloads\GraphX-PCL\GraphX-PCL\TSQL-master\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+C:\Users\khalefa\Downloads\GraphX-PCL\GraphX-PCL\TSQL-master\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+C:\Users\khalefa\Downloads\GraphX-PCL\GraphX-PCL\TSQL-master\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
+C:\Users\khalefa\Downloads\GraphX-PCL\GraphX-PCL\TSQL-master\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+C:\Users\khalefa\Downloads\GraphX-PCL\GraphX-PCL\TSQL-master\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+C:\Users\khalefa\Downloads\GraphX-PCL\GraphX-PCL\TSQL-master\ConsoleApplication1\bin\Debug\Microsoft.SqlServer.Management.SqlParser.dll
+C:\Users\khalefa\Downloads\GraphX-PCL\GraphX-PCL\TSQL-master\ConsoleApplication1\bin\Debug\Microsoft.SqlServer.TransactSql.ScriptDom.dll
+C:\Users\khalefa\Downloads\GraphX-PCL\GraphX-PCL\TSQL-master\ConsoleApplication1\obj\Debug\ConsoleApplication1.csprojResolveAssemblyReference.cache
