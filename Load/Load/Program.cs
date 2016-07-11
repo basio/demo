@@ -15,36 +15,36 @@ namespace Load
 
         static void o()
         {
-            AntlrInputStream inputStream = new AntlrInputStream("12");
+            //AntlrInputStream inputStream = new AntlrInputStream("12");
 
-            kqlLexer lexer = new kqlLexer(inputStream);
-            CommonTokenStream commonTokenStream = new CommonTokenStream(lexer);
-            kqlParser parser = new kqlParser(commonTokenStream);
+            //kqlLexer lexer = new kqlLexer(inputStream);
+            //CommonTokenStream commonTokenStream = new CommonTokenStream(lexer);
+            //kqlParser parser = new kqlParser(commonTokenStream);
 
-            IParseTree tree = parser.compileUnit();
-            var visitor = new IntegerMathVisitor();
+            //IParseTree tree = parser.input();
+            //var visitor = new IntegerMathVisitor();
 
-            Console.WriteLine(visitor.Visit(tree));
+            //Console.WriteLine(visitor.Visit(tree));
 
         }
         static void Main(string[] args)
         {
 
-            SchemaGraph s = new SchemaGraph();
-            s.LoadGraph("c:\\data\\b.xml");
+            Demo d = new Demo("c:\\data\\d.xml");
+          
+            Console.WriteLine(d.input.getGraph().VertexCount);
+            Console.WriteLine(d.input.getGraph().EdgeCount);
+            //Filter f = Filter.createPathFilter(d.input.dic, "ED_STUD", "AS_NODE");
 
-            if ("abc".Contains("abc"))
-                Console.WriteLine("ok");
-
-            Console.WriteLine(s.getGraph().VertexCount);
-            Console.WriteLine(s.getGraph().EdgeCount);
-            Filter f = Filter.createPathFilter(s.dic, "ED_STUD", "AS_NODE");
-
-            SchemaGraph g = f.ProcessFilter(s);
-            Console.WriteLine(g.getGraph().VertexCount);
-            Console.WriteLine(g.getGraph().EdgeCount);
-            var l = s.getAllFuzzyMatch(new string[] { "AS_NODE" });
-            foreach(DataVertex v in l)
+            //SchemaGraph g = f.ProcessFilter(d.input);
+            //Console.WriteLine(g.getGraph().VertexCount);
+            //Console.WriteLine(g.getGraph().EdgeCount);
+            //var l =d.input.getAllFuzzyMatch(new string[] { "AS_NODE" });
+            //foreach(DataVertex v in l)
+            //{
+            //    Console.WriteLine(v);
+            //}
+            foreach(DataVertex v in d.input.Vertices)
             {
                 Console.WriteLine(v);
             }

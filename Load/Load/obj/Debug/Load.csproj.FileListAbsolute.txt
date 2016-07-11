@@ -1,10 +1,3 @@
-C:\Users\khalefa\Downloads\GraphX-PCL\Load\Load\obj\Debug\kqlLexer.cs
-C:\Users\khalefa\Downloads\GraphX-PCL\Load\Load\obj\Debug\kqlParser.cs
-C:\Users\khalefa\Downloads\GraphX-PCL\Load\Load\obj\Debug\kqlListener.cs
-C:\Users\khalefa\Downloads\GraphX-PCL\Load\Load\obj\Debug\kqlBaseListener.cs
-C:\Users\khalefa\Downloads\GraphX-PCL\Load\Load\obj\Debug\kqlVisitor.cs
-C:\Users\khalefa\Downloads\GraphX-PCL\Load\Load\obj\Debug\kqlBaseVisitor.cs
-C:\Users\khalefa\Downloads\GraphX-PCL\Load\Load\obj\Debug\Load.csproj.Antlr4GeneratedCodeFileListAbsolute.txt
 C:\Users\khalefa\Downloads\GraphX-PCL\Load\Load\bin\Debug\Load.exe.config
 C:\Users\khalefa\Downloads\GraphX-PCL\Load\Load\obj\Debug\Load.csprojResolveAssemblyReference.cache
 C:\Users\khalefa\Downloads\GraphX-PCL\Load\Load\bin\Debug\Load.exe

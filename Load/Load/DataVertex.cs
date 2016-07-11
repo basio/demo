@@ -53,12 +53,18 @@ namespace Schema
     class Attribute : DataVertex
     {
         DataVertex parent;
-        public Attribute(DataVertex p, String name)
+        public bool isPrimaryKey = false;
+        string type;
+        public Attribute(DataVertex p, String name, string _type)
         {
             this.parent = p;
-            Text = parent.Text + "." + name;
+            Text = name;
+            type = _type;
         }
-
+        public override string ToString()
+        {
+            return parent.ToString() + " " + Text + " " + isPrimaryKey;
+        }
     }
 
 

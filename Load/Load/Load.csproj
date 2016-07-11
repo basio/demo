@@ -71,22 +71,12 @@
     <Compile Include="DataVertex.cs" />
     <Compile Include="Demo.cs" />
     <Compile Include="Filter.cs" />
-    <Compile Include="kql.g4.lexer.cs">
-      <DependentUpon>kql.g4</DependentUpon>
-    </Compile>
-    <Compile Include="kql.g4.parser.cs">
-      <DependentUpon>kql.g4</DependentUpon>
-    </Compile>
     <Compile Include="Schema.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <Antlr4 Include="kql.g4">
-      <Generator>MSBuild:Compile</Generator>
-      <CustomToolNamespace>Load</CustomToolNamespace>
-    </Antlr4>
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

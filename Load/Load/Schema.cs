@@ -62,21 +62,39 @@ namespace Schema
                          select new
                          {
                              Table = lv1.Element("SchemaObject").Value,
-                             Columns = lv1.Descendants("COL")
+                             Columns = lv1.Descendants("COL"),
+                             PrimaryKeys = lv1.Descendants("primarykeyconstraint")
                          };
 
             dic = new Dictionary<string, DataVertex>();
-     
+
             foreach (var table in tables)
             {
                 Table t = new Table(table.Table);
 
                 AddVertex(t);
                 dic.Add(t.Text, t);
+
+                //handling primary key
+                HashSet<string> pks = new HashSet<string>();
+                if (table.PrimaryKeys != null)
+                {
+
+                    foreach (var x in table.PrimaryKeys)
+                    {
+                        string[] xs = x.Value.Trim().Split('\n');
+                        foreach (string s in xs)
+                            pks.Add(s);
+                    }
+                }
+
                 foreach (var column in table.Columns)
                 {
                     string colname = column.Attribute("id").Value;
-                    Attribute col = new Attribute(t, colname);
+                    string typename = column.Attribute("type").Value;
+                    Attribute col = new Attribute(t, colname, typename);
+                    if (column.Attribute("primary").Value.ToLower().Equals("true")||pks.Contains(colname))
+                        col.isPrimaryKey = true;
                     AddVertex(col);
                     dic.Add(col.Text, col);
                     var e1 = new DataEdge(t, col, 1);
@@ -84,7 +102,7 @@ namespace Schema
                     AddEdge(e1);
                 }
             }
-     
+
         }
 
         public void LoadGraph(String name)
@@ -108,6 +126,8 @@ namespace Schema
         #region search
         public List<DataVertex> getExactMatch(string name)
         {
+            List<DataVertex> list = new List<DataVertex>();
+            if (!dic.ContainsKey(name)) return list;
             DataVertex source = dic[name];
             if (source is Attribute)
             {
@@ -121,7 +141,7 @@ namespace Schema
                     }
                 }
             }
-            List<DataVertex> list = new List<DataVertex>();
+
             list.Add(source);
             return list;
         }
@@ -160,14 +180,14 @@ namespace Schema
             {
                 bool match = true;
                 string kk = k.ToLower();
-                for(int i = 0; i < name.Length; i++)
+                for (int i = 0; i < name.Length; i++)
                 {
                     if (!kk.Contains(name[i].ToLower()))
-                    { match = false; break; }                    
+                    { match = false; break; }
                 }
                 if (match)
                     list.Add(dic[k]);
-               
+
             }
             return list;
         }

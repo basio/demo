@@ -56,8 +56,18 @@ namespace SqlParserSample
             sw.WriteLine("</Constraint>");*/
             a.AcceptChildren(this);
         }
+        public override void Visit(MultiPartIdentifier v)
+        {
+            string s = "";
+            foreach (Identifier i in v.Identifiers)
+                s=i.Value + ",";
+            sw.WriteLine(s.TrimEnd(','));
+                }
+
+       
         public override void Visit(ColumnReferenceExpression col)
         {
+            col.AcceptChildren(this);
             sw.WriteLine("Col" + col);
         }
 
@@ -80,8 +90,27 @@ namespace SqlParserSample
                         foreach (ColumnDefinition coldef in node.Definition.ColumnDefinitions)
                             Visit(coldef, TKs);
             }catch(Exception e) { }
+                      try
+            {
+                if (node.Definition.TableConstraints != null)
+                    if (node.Definition.TableConstraints.Count > 0)
+                        foreach (UniqueConstraintDefinition constraint in node.Definition.TableConstraints)
+                            if (constraint.IsPrimaryKey)
+                            {
+                                sw.WriteLine("<primarykeyconstraint>");
+                              
+                                foreach (ColumnWithSortOrder col in constraint.Columns)
+                                    col.Column. MultiPartIdentifier.Accept(this);
+                              
+                                sw.WriteLine("</primarykeyconstraint>");
+                            }
+                          
+            }
+            catch (Exception e) { }
+            
             sw.WriteLine("</table>");
         }
+       
         public override void Visit(ColumnDefinition col)
         {
             String s = "<COL id='" + col.ColumnIdentifier.Value + "'";
@@ -89,6 +118,7 @@ namespace SqlParserSample
 
             s = s + " type='" + dt.SqlDataTypeOption + "'></COL>";
             sw.WriteLine(s);
+            
 
             col.Accept(new NullVisitor());
 
@@ -128,14 +158,22 @@ namespace SqlParserSample
             //    else break; 
 
             }
-
-            s = s + " type='" + dt.SqlDataTypeOption + R + "'></COL>";
+            bool isprimary=false;
+            foreach(ConstraintDefinition cd in col.Constraints)
+            {
+                if(cd is UniqueConstraintDefinition)
+                {
+                    if ((cd as UniqueConstraintDefinition).IsPrimaryKey) isprimary = true;
+                }
+            }
+            s = s + " type='" + dt.SqlDataTypeOption  +"'" + " R='"+R+"'"+ "  primary='"+isprimary +"'></COL>";
             // TKs[col.LastTokenIndex+1]
             sw.WriteLine(s);
 
             col.Accept(new NullVisitor());
 
         }
+       
         public override void Visit(ForeignKeyConstraintDefinition v)
         {
             sw.WriteLine("<FKEY>");

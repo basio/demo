@@ -10,9 +10,9 @@ namespace Load
 {
     class Demo
     {
-        SchemaGraph input;
+        public SchemaGraph input;
 
-        BidirectionalGraph<DataVertex, DataEdge> clone;
+       public BidirectionalGraph<DataVertex, DataEdge> clone;
 
         public Demo(string filename)
         {
