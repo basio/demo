@@ -1,0 +1,16 @@
+RBRACK=4
+LBRACK=5
+NEWLINE=9
+LPAREN=3
+RPAREN=2
+ID=7
+EQ=6
+WS=10
+SELECT=1
+INT=8
+'select'=1
+']'=4
+'='=6
+'['=5
+')'=2
+'('=3

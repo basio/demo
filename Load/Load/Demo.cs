@@ -10,11 +10,18 @@ namespace Load
 {
     class Demo
     {
-        public SchemaGraph input;
+        public static Demo demo;
+        private Demo() { }
+        SchemaGraph input;
 
-       public BidirectionalGraph<DataVertex, DataEdge> clone;
+        BidirectionalGraph<DataVertex, DataEdge> clone;
 
-        public Demo(string filename)
+        public IEnumerable<DataVertex> Vertices { get { return input.Vertices; } }
+
+        public IEnumerable<DataEdge> Edges {  get{ return input.Edges; } }
+
+        public static Demo init(string filename) { demo = new Demo(filename); return demo; }
+        private Demo(string filename)
         {
             input = new SchemaGraph();
             input.LoadGraph(filename);
@@ -23,9 +30,16 @@ namespace Load
             {
                 clone.AddEdge(e.reverse());
             }
-
+            
         }
-
+        public List<DataVertex> getCandidateMatch(string id, bool fuzzy = false)
+        {
+            if (fuzzy == true)
+            {
+                return input.getAllFuzzyMatch(id);
+            }
+            else return input.getExactMatch(id);
+        }
         SchemaGraph Filter(Filter f)
         {
             return null;

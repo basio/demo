@@ -27,13 +27,13 @@ namespace Load
             //Console.WriteLine(visitor.Visit(tree));
 
         }
-        static void Main(string[] args)
+        static void demo(string[] args)
         {
 
-            Demo d = new Demo("c:\\data\\d.xml");
+            Demo d =Demo.init("c:\\data\\d.xml");
           
-            Console.WriteLine(d.input.getGraph().VertexCount);
-            Console.WriteLine(d.input.getGraph().EdgeCount);
+            Console.WriteLine(d.Vertices.Count());
+            Console.WriteLine(d.Edges.Count());
             //Filter f = Filter.createPathFilter(d.input.dic, "ED_STUD", "AS_NODE");
 
             //SchemaGraph g = f.ProcessFilter(d.input);
@@ -44,11 +44,23 @@ namespace Load
             //{
             //    Console.WriteLine(v);
             //}
-            foreach(DataVertex v in d.input.Vertices)
+            foreach(DataVertex v in d.Vertices)
             {
                 Console.WriteLine(v);
             }
 
+        }
+        static void Main(string[] args)
+        {
+
+            Demo d =  Demo.init("c:\\data\\d.xml");
+
+            List<Command> commands = Query.parse("            select           student[           graduate^female].grade        ");
+
+            foreach(Command c in commands)
+            {
+                c.getSQL();
+            }
         }
     }
 }
