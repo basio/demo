@@ -40,7 +40,7 @@ namespace Load
             this.id = id;
             this.conditions = condition;
         }
-        string getSql()
+        public string getSql()
         {
             //id may be either table, attribute,  or variable 
             //I have two options
@@ -52,8 +52,14 @@ namespace Load
             List<DataVertex> id_candidates = Demo.demo.getCandidateMatch(id);
             //for each conditi
             List<string> conds = conditions.Split('^').ToList<string>();
-            List<DataVertex> cond_condition
-
+            //List<DataVertex> cond_condition
+            List<DataVertex> candidates = new List<DataVertex>();
+            foreach(string cond in conds) {
+                List<DataVertex> cond_candidates = Demo.demo.getCandidateMatch(cond);
+                candidates.AddRange(cond_candidates);
+            }
+            Demo.demo.distance(id_candidates, candidates);
+            return "";
             
         }
     }
@@ -86,7 +92,7 @@ namespace Load
         }
         public string getSQL()
         {
-            return "";
+            return enities[0].getSql();
         }
     }
     class Command

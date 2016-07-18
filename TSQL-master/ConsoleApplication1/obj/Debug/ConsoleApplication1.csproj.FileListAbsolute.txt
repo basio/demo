@@ -34,3 +34,11 @@ C:\Users\khalefa\Downloads\GraphX-PCL\TSQL-master\ConsoleApplication1\bin\Debug\
 C:\Users\khalefa\Downloads\GraphX-PCL\TSQL-master\ConsoleApplication1\bin\Debug\Microsoft.SqlServer.Management.SqlParser.dll
 C:\Users\khalefa\Downloads\GraphX-PCL\TSQL-master\ConsoleApplication1\bin\Debug\Microsoft.SqlServer.TransactSql.ScriptDom.dll
 C:\Users\khalefa\Downloads\GraphX-PCL\TSQL-master\ConsoleApplication1\obj\Debug\ConsoleApplication1.csprojResolveAssemblyReference.cache
+C:\Users\khalefa\Google Drive\KDBMS code\GraphX-PCL\TSQL-master\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+C:\Users\khalefa\Google Drive\KDBMS code\GraphX-PCL\TSQL-master\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+C:\Users\khalefa\Google Drive\KDBMS code\GraphX-PCL\TSQL-master\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
+C:\Users\khalefa\Google Drive\KDBMS code\GraphX-PCL\TSQL-master\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+C:\Users\khalefa\Google Drive\KDBMS code\GraphX-PCL\TSQL-master\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+C:\Users\khalefa\Google Drive\KDBMS code\GraphX-PCL\TSQL-master\ConsoleApplication1\bin\Debug\Microsoft.SqlServer.Management.SqlParser.dll
+C:\Users\khalefa\Google Drive\KDBMS code\GraphX-PCL\TSQL-master\ConsoleApplication1\bin\Debug\Microsoft.SqlServer.TransactSql.ScriptDom.dll
+C:\Users\khalefa\Google Drive\KDBMS code\GraphX-PCL\TSQL-master\ConsoleApplication1\obj\Debug\ConsoleApplication1.csprojResolveAssemblyReference.cache

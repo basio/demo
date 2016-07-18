@@ -10,11 +10,20 @@ namespace Schema
 {
     public class SchemaGraph : BidirectionalGraph<DataVertex, DataEdge>
     {
+        public Dictionary<string, List<DataVertex>> dic;
+        private void addDic(DataVertex v)
+        {
+            List<DataVertex> list;
+            if (!dic.TryGetValue(v.Text, out list))
+            {
+                list = new List<DataVertex>();
+                dic.Add(v.Text, list);
+            }
 
-        public Dictionary<string, DataVertex> dic;
+            list.Add(v);
+        }
         public void AddForeignKey(string filename)
         {
-
             XDocument xdoc = XDocument.Load(filename);
 
             //Find tables  and their attributes
@@ -41,16 +50,47 @@ namespace Schema
                     try
                     {
                         string table_col = fk.Table + "." + cols[i];
-                        DataVertex curr = dic[table_col];
+                        List<DataVertex> curr_list = dic[table_col];
                         string ref_table_col = fk.RefTable + "." + refcols[i];
-                        DataVertex reff = dic[ref_table_col];
-                        DataEdge edge = new DataEdge(curr, reff, 10);
-                        edge.Type = DataEdge.EdgeType.DB_fk;
-                        AddEdge(edge);
+                        //  DataVertex reff = dic[ref_table_col];
+                        foreach (DataVertex curr in curr_list)
+                        {
+                            if (curr is Attribute)
+                            {
+                                Attribute attr = curr as Attribute;
+                                if (attr.parent.Text.Equals(ref_table_col))
+                                {
+                                    DataEdge edge = new DataEdge(curr, attr.parent, 10);
+                                    edge.Type = DataEdge.EdgeType.DB_fk;
+                                    AddEdge(edge);
+                                }
+                            }
+                        }
                     }
                     catch (Exception ex) { }
                 }
 
+            }
+        }
+        public void LoadOntology(string filename)
+        {
+            XDocument xdoc = XDocument.Load(filename);
+            var mappings = from lv1 in xdoc.Descendants("mapping")
+                           select new
+                           {
+                               concept = lv1.Element("concept").Value,
+                               node = lv1.Element("node").Value
+                           };
+
+
+            foreach (var mapping in mappings)
+            {
+                Concept concept = new Concept(mapping.concept);
+
+                AddVertex(concept);
+                addDic(concept);
+
+                List<DataVertex> vs = dic[mapping.node];
             }
         }
         private void LoadXml(String filename)
@@ -66,20 +106,19 @@ namespace Schema
                              PrimaryKeys = lv1.Descendants("primarykeyconstraint")
                          };
 
-            dic = new Dictionary<string, DataVertex>();
+            dic = new Dictionary<string, List<DataVertex>>();
 
             foreach (var table in tables)
             {
                 Table t = new Table(table.Table);
 
                 AddVertex(t);
-                dic.Add(t.Text, t);
+                addDic(t);
 
                 //handling primary key
                 HashSet<string> pks = new HashSet<string>();
                 if (table.PrimaryKeys != null)
                 {
-
                     foreach (var x in table.PrimaryKeys)
                     {
                         string[] xs = x.Value.Trim().Split('\n');
@@ -96,7 +135,7 @@ namespace Schema
                     if (column.Attribute("primary").Value.ToLower().Equals("true")||pks.Contains(colname))
                         col.isPrimaryKey = true;
                     AddVertex(col);
-                    dic.Add(col.Text, col);
+                    addDic(col);
                     var e1 = new DataEdge(t, col, 1);
                     e1.Type = DataEdge.EdgeType.DB_attr;
                     AddEdge(e1);
@@ -128,21 +167,27 @@ namespace Schema
         {
             List<DataVertex> list = new List<DataVertex>();
             if (!dic.ContainsKey(name)) return list;
-            DataVertex source = dic[name];
-            if (source is Attribute)
+           List<DataVertex> source = dic[name];
+            List<DataVertex> srs = new List<DataVertex>();
+            foreach (DataVertex v in source)
             {
-                //need to get the table
-                foreach (var e in OutEdges(source))
+                if (v is Attribute)
                 {
-                    if ((e.Weight == 1) && (e.Target is Table))
+                    //need to get the table
+                    foreach (var e in OutEdges(v))
                     {
-                        source = e.Target;
-                        break;
+                        //TODO: change this
+                        if ((e.Weight == 1) && (e.Target is Table))
+                        {
+                            srs.Add(e.Target);
+                            break;
+                        }
                     }
                 }
+                else
+                    srs.Add(v);
             }
-
-            list.Add(source);
+            list.AddRange(srs);
             return list;
         }
         public List<DataVertex> getTableFuzzyMatch(string name)
@@ -166,8 +211,9 @@ namespace Schema
                     { match = false; break; }
                 }
                 if (match)
-                    if (dic[k] is Table)
-                        list.Add(dic[k]);
+                    foreach(var d in dic[k])
+                    if (d is Table) 
+                        list.Add(d);
 
             }
             return list;
@@ -186,7 +232,7 @@ namespace Schema
                     { match = false; break; }
                 }
                 if (match)
-                    list.Add(dic[k]);
+                    list.AddRange(dic[k]);
 
             }
             return list;

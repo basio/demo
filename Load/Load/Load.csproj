@@ -71,6 +71,7 @@
     <Compile Include="DataVertex.cs" />
     <Compile Include="Demo.cs" />
     <Compile Include="Filter.cs" />
+    <Compile Include="Ontology.cs" />
     <Compile Include="Query.cs" />
     <Compile Include="Schema.cs" />
     <Compile Include="Program.cs" />

@@ -16,8 +16,8 @@ namespace SqlParserSample
     class Program
     {
         static string dir = @"C:\Users\khalefa\Documents\MEGAsync\data\";
-        static string filename = "c:\\data\\"+@"a.sql";
-        static string filenameoutput = @"C:\data\d.xml";
+        static string filename = dir+@"dbms.sql";
+        static string filenameoutput = @"C:\data\dbms.xml";
 
         #region a
         //    static void test(string[] args)

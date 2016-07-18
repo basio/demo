@@ -52,7 +52,7 @@ namespace Schema
     }
     class Attribute : DataVertex
     {
-        DataVertex parent;
+public  DataVertex parent;
         public bool isPrimaryKey = false;
         string type;
         public Attribute(DataVertex p, String name, string _type)
@@ -67,6 +67,12 @@ namespace Schema
         }
     }
 
-
+    class Concept : DataVertex
+    {
+        public Concept(String name)
+        {
+            Text = name;
+        }
+    }
 
 }

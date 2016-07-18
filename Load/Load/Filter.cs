@@ -12,17 +12,12 @@ namespace Schema
     public abstract class Filter /*: IGraphFilter<DataVertex, DataEdge, SchemaGraph>*/
     {
         public abstract SchemaGraph ProcessFilter(SchemaGraph inputGraph);
-        public Dictionary<string, DataVertex> dic;
+      
         public static Filter createPathFilter(string sourceVertex, string destVertex)
         {
             return new PathFilter(sourceVertex, destVertex);
         }
-        public static Filter createPathFilter(Dictionary<string, DataVertex> dic, string sourceVertex, string destVertex)
-        {
-            PathFilter f= new PathFilter(sourceVertex, destVertex);
-            f.dic = dic;
-            return f;
-        }
+       
 
     }
     public class EmptyFilter : Filter
@@ -81,7 +76,7 @@ namespace Schema
         }
         public override SchemaGraph ProcessFilter(SchemaGraph inputGraph)
         {
-            inputGraph.dic = dic;
+         
             SchemaGraph filteredgraph = new SchemaGraph(inputGraph);
 
 
