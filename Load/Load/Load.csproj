@@ -40,6 +40,10 @@
       <HintPath>..\packages\Antlr4.Runtime.4.4.1-alpha001\lib\net45\Antlr4.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Priority Queue, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\OptimizedPriorityQueue.2.0.0\lib\net45\Priority Queue.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="QuickGraph, Version=3.6.61114.0, Culture=neutral, PublicKeyToken=f3fb40175eec2af3, processorArchitecture=MSIL">
       <HintPath>..\packages\QuickGraph.3.6.61119.7\lib\net4\QuickGraph.dll</HintPath>
       <Private>True</Private>
@@ -71,7 +75,6 @@
     <Compile Include="DataVertex.cs" />
     <Compile Include="Demo.cs" />
     <Compile Include="Filter.cs" />
-    <Compile Include="Ontology.cs" />
     <Compile Include="Query.cs" />
     <Compile Include="Schema.cs" />
     <Compile Include="Program.cs" />

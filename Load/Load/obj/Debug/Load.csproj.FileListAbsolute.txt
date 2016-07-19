@@ -30,3 +30,5 @@ C:\Users\khalefa\Google Drive\KDBMS code\GraphX-PCL\Load\Load\bin\Debug\QuickGra
 C:\Users\khalefa\Google Drive\KDBMS code\GraphX-PCL\Load\Load\bin\Debug\QuickGraph.Graphviz.xml
 C:\Users\khalefa\Google Drive\KDBMS code\GraphX-PCL\Load\Load\bin\Debug\QuickGraph.Serialization.xml
 C:\Users\khalefa\Google Drive\KDBMS code\GraphX-PCL\Load\Load\obj\Debug\Load.csprojResolveAssemblyReference.cache
+C:\Users\khalefa\Google Drive\KDBMS code\GraphX-PCL\Load\Load\bin\Debug\Priority Queue.dll
+C:\Users\khalefa\Google Drive\KDBMS code\GraphX-PCL\Load\Load\bin\Debug\Priority Queue.pdb

@@ -30,7 +30,7 @@ namespace Load
         static void demo(string[] args)
         {
 
-            Demo d =Demo.init("c:\\data\\db.xml");
+            Demo d =Demo.init("c:\\data\\db.xml","");
           
             Console.WriteLine(d.Vertices.Count());
             Console.WriteLine(d.Edges.Count());
@@ -53,7 +53,7 @@ namespace Load
         static void Main(string[] args)
         {
 
-            Demo d =  Demo.init("c:\\data\\dbms.xml");
+            Demo d =  Demo.init("c:\\data\\dbms.xml","c:\\data\\mapping.xml");
 
             List<Command> commands = Query.parse("            select           student[           graduate^female].grade        ");
 

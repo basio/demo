@@ -21,21 +21,29 @@ namespace Load
 
         public IEnumerable<DataVertex> Vertices { get { return input.Vertices; } }
 
-        public IEnumerable<DataEdge> Edges {  get{ return input.Edges; } }
+        public IEnumerable<DataEdge> Edges { get { return input.Edges; } }
 
-       
 
-        public static Demo init(string filename) { demo = new Demo(filename); return demo; }
-        private Demo(string filename)
+        public static Demo init(string filename, string mapping)
+        {
+            demo = new Demo(filename, mapping);
+            return demo;
+        }
+
+        private Demo(string filename, string mapping)
         {
             input = new SchemaGraph();
             input.LoadGraph(filename);
+            input.LoadOntology(mapping);
             clone = input.Clone();
+
             foreach (DataEdge e in clone.Edges)
             {
+                if((e.Type==DataEdge.EdgeType.DB_attr)||(e.Type == DataEdge.EdgeType.DB_fk))
                 clone.AddEdge(e.reverse());
+
             }
-            
+
         }
         public List<DataVertex> getCandidateMatch(string id, bool fuzzy = false)
         {
@@ -51,25 +59,23 @@ namespace Load
         }
         public void distance(List<DataVertex> sources, List<DataVertex> dests)
         {
-            var g = demo.clone;
-         
-
+      
             Func<DataEdge, double> distnace = weight;
             //var fw = new FloydWarshallAllShortestPathAlgorithm<DataVertex, DataEdge>(g, distnace);
-          //  var dijkstra =   new DijkstraShortestPathAlgorithm<DataVertex, DataEdge>(g, distnace);
+            //  var dijkstra =   new DijkstraShortestPathAlgorithm<DataVertex, DataEdge>(g, distnace);
             foreach (DataVertex source in sources)
             {
-                TryFunc<DataVertex, IEnumerable<DataEdge>> tryGetPath = g.ShortestPathsDijkstra<DataVertex, DataEdge>(distnace, source);
+             
 
                 foreach (var target in dests)
                 {
-                    IEnumerable<DataEdge> path;
-                    if (tryGetPath( target, out path))
+                    List<DataVertex> path;
+                    LabeledGraph.BFS(clone,source, target, out path);
                         foreach (var edge in path)
                             Console.WriteLine(edge);
                 }
             }
         }
-        
+
     }
 }
