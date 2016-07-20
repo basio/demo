@@ -55,7 +55,7 @@ namespace Load
             //List<DataVertex> cond_condition
             List<DataVertex> candidates = new List<DataVertex>();
             foreach(string cond in conds) {
-                List<DataVertex> cond_candidates = Demo.demo.getCandidateMatch(cond);
+                List<DataVertex> cond_candidates = Demo.demo.getCandidateMatch(cond.Trim());
                 candidates.AddRange(cond_candidates);
             }
             Demo.demo.distance(id_candidates, candidates);

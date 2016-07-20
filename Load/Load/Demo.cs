@@ -39,8 +39,8 @@ namespace Load
 
             foreach (DataEdge e in clone.Edges)
             {
-                if((e.Type==DataEdge.EdgeType.DB_attr)||(e.Type == DataEdge.EdgeType.DB_fk))
-                clone.AddEdge(e.reverse());
+                if ((e.Type == DataEdge.EdgeType.DB_attr) || (e.Type == DataEdge.EdgeType.DB_fk))
+                    clone.AddEdge(e.reverse());
 
             }
 
@@ -57,25 +57,21 @@ namespace Load
         {
             return e.Weight;
         }
+
+        //get the 
         public void distance(List<DataVertex> sources, List<DataVertex> dests)
         {
-      
-            Func<DataEdge, double> distnace = weight;
-            //var fw = new FloydWarshallAllShortestPathAlgorithm<DataVertex, DataEdge>(g, distnace);
-            //  var dijkstra =   new DijkstraShortestPathAlgorithm<DataVertex, DataEdge>(g, distnace);
-            foreach (DataVertex source in sources)
+            List<Path> paths=new List<Path>();
+            foreach (var dest in dests)
             {
-             
-
-                foreach (var target in dests)
-                {
-                    List<DataVertex> path;
-                    LabeledGraph.BFS(clone,source, target, out path);
-                        foreach (var edge in path)
-                            Console.WriteLine(edge);
-                }
+                Path p=null;
+                LabeledGraph.BFS(clone, sources, dest, out p);
+                if (p != null)
+                    paths.Add(p);
             }
+
+        }
         }
 
     }
-}
+

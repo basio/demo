@@ -197,26 +197,68 @@ namespace Schema
             {
                 Vertex = vertex;
             }
+            public DataEdge Edge { get; set; }
             public DataVertexWithDistance Source { get; set; }
         }
 
 
-        public static int BFS(BidirectionalGraph<DataVertex, DataEdge> graph, DataVertex src, DataVertex dest, out List<DataVertex> path)
+        public static int BFS(BidirectionalGraph<DataVertex, DataEdge> graph, List<DataVertex> sources, List<DataVertex> dests, out List<Path> paths)
+        {
+            //FastPriorityQueue<DataVertexWithDistance>
+
+            SimplePriorityQueue<DataVertexWithDistance> queue = new SimplePriorityQueue<DataVertexWithDistance>();
+            paths = new List<Path>();
+            foreach(var src in sources)
+            queue.Enqueue(new DataVertexWithDistance(src), 0);
+            while (queue.Count > 0)
+            {
+                DataVertexWithDistance v = queue.Dequeue();
+                if (dests.Contains(v.Vertex))
+                {
+                    DataVertex dest = v.Vertex;
+                   Path  path = new Path(v.Vertex);
+                    while (v.Edge != null)
+                    {
+                        path.AddEdge(v.Edge);                      
+                        v = v.Source;
+                    }
+                    paths.Add(path);
+                    dests.Remove(dest);
+                    if (dests.Count == 0) break;
+                }
+                double p = v.Priority;
+                foreach (DataEdge edge in graph.OutEdges(v.Vertex))
+                {
+                    var tmp = new DataVertexWithDistance(edge.Target);
+                    tmp.Edge = edge;
+                    tmp.Source = v;
+                    queue.Enqueue(tmp, edge.Weight + p);
+                }
+            }
+            return 0;
+        }
+        public static int BFS(BidirectionalGraph<DataVertex, DataEdge> graph, List<DataVertex> sources, DataVertex dest, out Path path)
         {
             //FastPriorityQueue<DataVertexWithDistance>
 
             SimplePriorityQueue<DataVertexWithDistance> queue = new SimplePriorityQueue<DataVertexWithDistance>();
             path = null;
-            queue.Enqueue(new DataVertexWithDistance(src), 0);
+            HashSet<DataVertex> visited = new HashSet<DataVertex>();
+            foreach (var src in sources)
+            {
+                queue.Enqueue(new DataVertexWithDistance(src), 0);
+                visited.Add(src);
+            }
             while (queue.Count > 0)
             {
                 DataVertexWithDistance v = queue.Dequeue();
-                if (v.Vertex.Equals(dest))
+                if (dest.Equals(v.Vertex))
                 {
-                    path = new List<DataVertex>();
-                    while (v.Source != null)
+                  //  DataVertex dest = v.Vertex;
+                     path = new Path(v.Vertex);
+                    while (v.Edge != null)
                     {
-                        path.Add(v.Source.Vertex);
+                        path.AddEdge(v.Edge);
                         v = v.Source;
                     }
                     break;
@@ -224,18 +266,22 @@ namespace Schema
                 double p = v.Priority;
                 foreach (DataEdge edge in graph.OutEdges(v.Vertex))
                 {
-                    var tmp = new DataVertexWithDistance(edge.Target);
-                    tmp.Source = v;
-                    queue.Enqueue(tmp, edge.Weight + p);
+                    if (!visited.Contains(edge.Target))
+                    {
+                        var tmp = new DataVertexWithDistance(edge.Target);
+                        tmp.Edge = edge;
+                        tmp.Source = v;
+                        queue.Enqueue(tmp, edge.Weight + p);
+                        visited.Add(edge.Target);
+                    }
                 }
             }
             return 0;
         }
-
     }
     public class SchemaGraph : LabeledGraph
     {
-
+         
         public void AddForeignKey(string filename)
         {
             XDocument xdoc = XDocument.Load(filename);
@@ -310,6 +356,11 @@ namespace Schema
                         edge.Type = DataEdge.EdgeType.Ontology;
                         edge.Weight = 0;
                         AddEdge(edge);
+
+                        DataEdge revedge = new DataEdge(vertex, concept);
+                        revedge.Type = DataEdge.EdgeType.Ontology;
+                        revedge.Weight = 0;
+                        AddEdge(revedge);
                     }
                 }
             }
@@ -396,7 +447,6 @@ namespace Schema
         {
             LoadXml(name);
             AddForeignKey(name);
-
         }
 
         public SchemaGraph getGraph()
