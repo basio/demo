@@ -353,12 +353,12 @@ namespace Schema
                     foreach (DataVertex vertex in vs)
                     {
                         DataEdge edge = new DataEdge(concept, vertex);
-                        edge.Type = DataEdge.EdgeType.Ontology;
+                        edge.Type = DataEdge.EdgeType.OntRel;
                         edge.Weight = 0;
                         AddEdge(edge);
 
                         DataEdge revedge = new DataEdge(vertex, concept);
-                        revedge.Type = DataEdge.EdgeType.Ontology;
+                        revedge.Type = DataEdge.EdgeType.OntRel;
                         revedge.Weight = 0;
                         AddEdge(revedge);
                     }

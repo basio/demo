@@ -67,8 +67,13 @@ namespace Load
                 Path p=null;
                 LabeledGraph.BFS(clone, sources, dest, out p);
                 if (p != null)
+                {
+                    //add 
+                    p.AddRelations(clone);
                     paths.Add(p);
+                }
             }
+
 
         }
         }

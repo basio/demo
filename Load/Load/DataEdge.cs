@@ -81,7 +81,7 @@ namespace Schema
 public class DataEdge : EdgeBase<DataVertex>
     {
 
-        public enum EdgeType {  DB_attr, DB_fk, Ontology, Inverted, Reduandant };
+        public enum EdgeType {  DB_attr, DB_fk, Ontology, Inverted, Reduandant,OntRel };
 
         public EdgeType Type { get; set; }
         /// <summary>
