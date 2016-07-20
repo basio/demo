@@ -1,5 +1,4 @@
-﻿using System;
-using QuickGraph;
+﻿using GraphX;
 using GraphX.PCL.Common.Models;
 
 namespace Schema
@@ -16,74 +15,13 @@ namespace Schema
      *  - Target property that holds edge target vertex.
      *  - Weight property that holds optional edge weight value that can be used in some layout algorithms.
      */
-  /*  public abstract class EdgeBase<TVertex> : QuickGraph.IEdge<TVertex>
-    {
-        /// <summary>
-        /// Skip edge in algo calc and visualization
-        /// </summary>
-   
 
-        protected EdgeBase(TVertex source, TVertex target, double weight = 1)        {
-
-            Source = source;
-            Target = target;
-            Weight = weight;
-            ID = -1;
-        }
-
-        /// <summary>
-        /// Unique edge ID
-        /// </summary>
-        public long ID { get; set; }
-
-        /// <summary>
-        /// Returns true if Source vertex equals Target vertex
-        /// </summary>
-        public bool IsSelfLoop
-        {
-            get { return Source.Equals(Target); }
-        }
-
-        /// <summary>
-        /// Optional parameter to bind edge to static vertex connection point
-        /// </summary>
-        public int? SourceConnectionPointId { get; set; }
-
-        /// <summary>
-        /// Optional parameter to bind edge to static vertex connection point
-        /// </summary>
-        public int? TargetConnectionPointId { get; set; }
-
-      
-        /// <summary>
-        /// Source vertex
-        /// </summary>
-        public TVertex Source { get; set; }
-
-        /// <summary>
-        /// Target vertex
-        /// </summary>
-        public TVertex Target { get; set; }
-
-        /// <summary>
-        /// Edge weight that can be used by some weight-related layout algorithms
-        /// </summary>
-        public double Weight { get; set; }
-
-        /// <summary>
-        /// Reverse the calculated routing path points.
-        /// </summary>
-        public bool ReversePath { get; set; }
-
-       
-    }*/
-
-public class DataEdge : EdgeBase<DataVertex>
+    public class DataEdge : EdgeBase<DataVertex>
     {
 
-        public enum EdgeType {  DB_attr, DB_fk, Ontology, Inverted, Reduandant,OntRel };
+        enum EdgeType { DB, Ontology, Inverted, Reduandant};
 
-        public EdgeType Type { get; set; }
+        EdgeType Type { get; set; }
         /// <summary>
         /// Default constructor. We need to set at least Source and Target properties of the edge.
         /// </summary>
@@ -91,9 +29,9 @@ public class DataEdge : EdgeBase<DataVertex>
         /// <param name="target">Target vertex data</param>
         /// <param name="weight">Optional edge weight</param>
         public DataEdge(DataVertex source, DataVertex target, double weight = 1)
-            : base(source, target, weight)
-        {
-        }
+			: base(source, target, weight)
+		{
+		}
         /// <summary>
         /// Default parameterless constructor (for serialization compatibility)
         /// </summary>
@@ -122,7 +60,6 @@ public class DataEdge : EdgeBase<DataVertex>
                 return _original;
             }
         }
-        
         public DataEdge reverse()
         {
             DataEdge t = new DataEdge();
@@ -131,8 +68,6 @@ public class DataEdge : EdgeBase<DataVertex>
             t.Text = this.Text;
             t.Weight = this.Weight;
             t._original = this;
-            if(t.Type!=DataEdge.EdgeType.Ontology)
-            t.Type= DataEdge.EdgeType.Reduandant;
             return t;
 
         }

@@ -60,10 +60,6 @@
   <ItemGroup>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="Priority Queue, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\OptimizedPriorityQueue.2.0.0\lib\net20\Priority Queue.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="QuickGraph">
       <HintPath>..\..\packages\QuickGraphPCL.3.6.61114.2\lib\net40-client\QuickGraph.dll</HintPath>
       <Private>True</Private>
@@ -102,12 +98,9 @@
     </Compile>
     <Compile Include="Models\DataEdge.cs" />
     <Compile Include="Models\DataVertex.cs" />
-    <Compile Include="Models\Demo.cs" />
     <Compile Include="Models\Filter.cs" />
     <Compile Include="Models\GraphAreaExample.cs" />
-    <Compile Include="Models\Path.cs" />
-    <Compile Include="Models\Query.cs" />
-    <Compile Include="Models\Schema.cs" />
+    <Compile Include="Models\SchemaGraph.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">

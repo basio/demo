@@ -3,21 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using QuickGraph;
-
+using GraphX.PCL.Common.Interfaces;
 using QuickGraph.Algorithms;
-
 
 namespace Schema
 {
-    public abstract class Filter /*: IGraphFilter<DataVertex, DataEdge, SchemaGraph>*/
+    public abstract class Filter : IGraphFilter<DataVertex, DataEdge, SchemaGraph>
     {
         public abstract SchemaGraph ProcessFilter(SchemaGraph inputGraph);
-      
+        public Dictionary<string, DataVertex> dic;
         public static Filter createPathFilter(string sourceVertex, string destVertex)
         {
-            return new PathFilter(sourceVertex, destVertex);
+            return new PathFilter(sourceVertex,destVertex);
         }
-       
 
     }
     public class EmptyFilter : Filter
@@ -37,7 +35,7 @@ namespace Schema
         public VertexFilter(string sourceVertex)
         {
             this.sourceVertex = sourceVertex;
-
+            
         }
 
         public override SchemaGraph ProcessFilter(SchemaGraph inputGraph)
@@ -69,17 +67,17 @@ namespace Schema
     {
         public string destVertex;
         public PathFilter(string sourceVertex, string destVertex) : base(sourceVertex) { this.destVertex = destVertex; }
-
+      
         double weight(DataEdge e)
         {
             return e.Weight;
         }
         public override SchemaGraph ProcessFilter(SchemaGraph inputGraph)
         {
-         
+            inputGraph.dic = dic;
             SchemaGraph filteredgraph = new SchemaGraph(inputGraph);
 
-
+            
             Func<DataEdge, double> distnace = weight;
             DataVertex source = inputGraph.getTable(sourceVertex).First<DataVertex>();
             DataVertex dest = inputGraph.getTable(destVertex).First<DataVertex>();
@@ -107,15 +105,6 @@ namespace Schema
             return filteredgraph;
         }
 
-    }
-
-    public class QueryFilter : Filter
-    {
-        public string query;
-        public override SchemaGraph ProcessFilter(SchemaGraph inputGraph)
-        {
-            return null;
-        }
     }
 }
 

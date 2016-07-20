@@ -9,8 +9,6 @@ using GraphX.Controls;
 using GraphX.Controls.Models;
 using QuickGraph;
 using Schema;
-using Load;
-using System.Collections.Generic;
 
 namespace WindowsFormsProject
 {
@@ -22,10 +20,8 @@ namespace WindowsFormsProject
             Load += Form1_Load;
         }
 
-        Demo demo;
         void Form1_Load(object sender, EventArgs e)
         {
-            demo = Demo.init(@"c:\data\dbms.sample.xml", @"c:\data\mapping.xml");
             wpfHost.Child = GenerateWpfVisuals();
             _zoomctrl.ZoomToFill();
         }
@@ -47,13 +43,10 @@ namespace WindowsFormsProject
             };
             _gArea.ShowAllEdgesLabels(true);
 
-
-            //SchemaGraph example = d.
-            logic.Graph = Demo.demo.input;
-
-            //example.getGraph();
+            SchemaGraph example = LoadGraph();
+            logic.Graph = example.getGraph();
+            _gArea.process();
           
-
             logic.DefaultLayoutAlgorithm = LayoutAlgorithmTypeEnum.LinLog;
             logic.DefaultLayoutAlgorithmParams = logic.AlgorithmFactory.CreateLayoutParameters(LayoutAlgorithmTypeEnum.LinLog);
             //((LinLogLayoutParameters)logic.DefaultLayoutAlgorithmParams). = 100;
@@ -66,8 +59,8 @@ namespace WindowsFormsProject
             _zoomctrl.Content = _gArea;
             _gArea.RelayoutFinished += gArea_RelayoutFinished;
 
-
-            var myResourceDictionary = new ResourceDictionary { Source = new Uri("Templates\\template.xaml", UriKind.Relative) };
+            
+            var myResourceDictionary = new ResourceDictionary {Source = new Uri("Templates\\template.xaml", UriKind.Relative)};
             _zoomctrl.Resources.MergedDictionaries.Add(myResourceDictionary);
 
             return _zoomctrl;
@@ -103,30 +96,6 @@ namespace WindowsFormsProject
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {
-            //"            select           student[           graduate^female].grade        "
-            if (demo == null)
-                demo = Demo.init(@"c:\data\dbms.sample.xml", @"c:\data\mapping.xml");
-            try
-            {
-                List<Command> commands = Query.parse(textBox1.Text);
-                SchemaGraph g = null;
-                foreach (Command c in commands)
-                {
-                    g = c.getSQL();
-                    break;
-                }
-                demo.query = g;
-                richTextBox1.Text = g.tostring();
-                wpfHost.Child = GenerateWpfVisuals();
-                _zoomctrl.ZoomToFill();
-            }catch(Exception ex)
-            {
-
-            }
-        }
-
-        private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
 
         }

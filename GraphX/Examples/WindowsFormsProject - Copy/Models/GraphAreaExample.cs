@@ -55,7 +55,21 @@ namespace Schema
         {
             ControlFactory = new CustomGraphControlFactory(this);
         }
-       
+        Filter filter;
+
+      
+
+        public void process()
+        {
+            Dictionary<string, DataVertex> dic;
+            var graphschema = LogicCore.Graph as SchemaGraph;
+            dic = graphschema.dic;
+            filter = Filter.createPathFilter("ED_STUD","ED_STUD_SCHOLASTIC");
+            filter.dic = dic;      
+            LogicCore.Filters.Enqueue(filter);
+
+            RelayoutGraph();
+      }
         
     }
 
